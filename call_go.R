@@ -2,3 +2,5 @@
 
 dyn.load("rgo.so")
 .Call("godouble", 21L)
+
+.Call("gofib", 40L)
