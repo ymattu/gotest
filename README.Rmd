@@ -1,3 +1,7 @@
+---
+output: github_document
+---
+
 # Test for calling Go from R
 ## Commile and build
 
