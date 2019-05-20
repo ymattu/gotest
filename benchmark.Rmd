@@ -1,0 +1,49 @@
+---
+title: "Benchmark"
+author: "ymattu"
+date: "2019/5/20"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Prepare
+## Go
+```{r}
+# load shared object
+dyn.load("rgo.so")
+```
+
+## R
+```{r}
+source("fibonacchi.R")
+```
+
+# Single execution
+## Go
+```{r}
+.Call("gofib", 40L)
+system.time(.Call("gofib", 40L))
+system.time(.Call("gofib_fast", 40L))
+```
+
+## R
+```{r}
+# too slowly
+# fibr(40L)
+
+fibr_fast(40L)
+system.time(fibr_fast(40L))
+```
+
+# Comparison
+```{r}
+compare <- microbenchmark::microbenchmark(Go = .Call("gofib_fast", 40L),
+                                          R = fibr_fast(40L),
+                                          times = 1000)
+knitr::kable(microbenchmark:::print.microbenchmark(compare))
+microbenchmark:::autoplot.microbenchmark(compare)
+```
+

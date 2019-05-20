@@ -15,5 +15,19 @@ func fib(n int) int {
     return fib(n-1) + fib(n-2)
 }
 
+//export fib_fast
+func fib_fast(i int) int {
+    a := 1
+    b := 1
+    j := 2
+    for ; j < i; j += 2 {
+        a += b
+        b += a
+    }
+    if i%2 == 0 {
+        return b
+    }
+    return a
+}
 
 func main() {}

@@ -73,6 +73,8 @@ extern GoInt DoubleIt(GoInt p0);
 
 extern GoInt fib(GoInt p0);
 
+extern GoInt fib_fast(GoInt p0);
+
 #ifdef __cplusplus
 }
 #endif
