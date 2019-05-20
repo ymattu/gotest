@@ -1,0 +1,21 @@
+# Test for calling Go from R
+## Commile and build
+
+```
+$ go build -o libcalc.so -buildmode=c-shared ./calc
+$ R CMD SHLIB -L. -lcalc rgo.c
+```
+
+## How to use
+```{r}
+# Load shared object
+dyn.load("rgo.so")
+
+# Call a function via C
+.Call("godouble", 21L)
+
+.Call("gofib", 40L)
+```
+
+## References
+https://purrple.cat/blog/2017/05/14/calling-go-from-r/
