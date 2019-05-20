@@ -3,14 +3,14 @@ output: github_document
 ---
 
 # Test for calling Go from R
-## Commile and build
+## Compile and build
 
 ```
 $ go build -o libcalc.so -buildmode=c-shared ./calc
 $ R CMD SHLIB -L. -lcalc rgo.c
 ```
 
-## How to use
+## Usage
 ```{r}
 # Load shared object
 dyn.load("rgo.so")
